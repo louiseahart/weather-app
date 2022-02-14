@@ -1,0 +1,45 @@
+body {
+  margin-top: 50px;
+}
+.container {
+  border: 2px solid #ff3366;
+  padding: 30px;
+  margin-bottom: 50px;
+  color: #ff3366;
+}
+.pinkborder {
+  border: 2px solid #ffd8e0;
+  background-color: #fff8f9;
+  color: #ff3366;
+}
+.currentLocation {
+  font-size: 20px;
+}
+.fullheight {
+  height: 100%;
+}
+.cityname {
+  font-size: 40px;
+  text-align: center;
+  padding: 20px;
+}
+.citytemp {
+  font-size: 40px;
+  text-align: center;
+}
+
+.farenheight {
+  color: #ab47bc;
+}
+.metrics {
+  font-size: 26px;
+  padding: 10px 40px;
+}
+.high {
+  color: #fc7042;
+  padding-right: 10px;
+}
+.low {
+  color: #576acb;
+  padding-right: 10px;
+}
