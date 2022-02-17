@@ -4,7 +4,6 @@ body {
 .container {
   border: 2px solid #ff3366;
   padding: 30px;
-  margin-bottom: 50px;
   color: #ff3366;
 }
 .pinkborder {
@@ -42,4 +41,10 @@ body {
 .low {
   color: #576acb;
   padding-right: 10px;
+}
+.footerLink {
+  font-size: 80%;
+  font-weight: 400;
+  padding: 1% 5% 5% 3.2%;
+  margin-bottom: 50px;
 }
