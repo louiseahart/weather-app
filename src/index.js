@@ -20,7 +20,7 @@ function formatDate(givenDate) {
     "Septemble",
     "October",
     "November",
-    "December"
+    "December",
   ];
 
   //let day = days[givenDate.getDay()];
@@ -45,7 +45,7 @@ function formatTime(givenDate) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
 
   let day = padWithZero(days[givenDate.getDay()]);
@@ -71,13 +71,70 @@ timeDiv.innerHTML = formatTime(new Date());
 //
 function displayTemperature(response) {
   let cityResult = document.querySelector(".cityname");
-  // let searchField = document.querySelector("#searchField");
-  // (was used for getting cityname from searchfield.
-  // but now we get it from the api response)
   let city = response.data.name;
   cityResult.innerHTML = city;
-  let tempResult = document.querySelector(".temperature");
-  tempResult.innerHTML = Math.round(response.data.main.temp) + "°C ";
+
+  let newEmoji = "";
+
+  switch (response.data.weather[0].main) {
+    case "Clear":
+      newEmoji = "☀️";
+      break;
+    case "Thunderstorm":
+      newEmoji = "⛈";
+      break;
+    case "Drizzle":
+      newEmoji = "🌦";
+      break;
+    case "Rain":
+      newEmoji = "☔️";
+      break;
+    case "Snow":
+      newEmoji = "❄️";
+      break;
+    case "Mist":
+      newEmoji = "💨";
+      break;
+    case "Fog":
+      newEmoji = "🌫";
+      break;
+    case "Tornado":
+      newEmoji = "🌪";
+      break;
+    case "Clouds":
+      newEmoji = "☁️";
+      break;
+
+    default:
+      newEmoji = "";
+  }
+
+  let emoji = document.querySelector(".weatherIcon");
+  emoji.innerHTML = newEmoji; //+ " " + response.data.weather[0].description;
+
+  let tempResultC = document.querySelector(".temperatureC");
+  tempResultC.innerHTML = Math.round(response.data.main.temp) + "°C ";
+
+  let fahrenheitTemp = Math.round((response.data.main.temp * 9) / 5 + 32);
+
+  let tempResultF = document.querySelector(".temperatureF");
+  tempResultF.innerHTML =
+    Math.round(response.data.main.temp) + fahrenheitTemp + "°F ";
+
+  let metricResult = document.querySelector(".metrics");
+  metricResult.innerHTML =
+    "Min: " +
+    Math.round(response.data.main.temp_min) +
+    "°C " +
+    " <br/> Max: " +
+    Math.round(response.data.main.temp_max) +
+    "°C " +
+    " <br/> Humid: " +
+    Math.round(response.data.main.humidity) +
+    "% " +
+    " <br/> Wind: " +
+    Math.round(response.data.wind.speed) +
+    "km/h ";
 }
 
 //

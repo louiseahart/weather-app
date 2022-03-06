@@ -15,9 +15,9 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div class="container mainWrapper">
       <form class="search">
-        <div class="row mb-3">
+        <div class="row mb-2 g-2">
           <div class="col-7">
             <input
               type="text"
@@ -36,60 +36,68 @@
           </div>
         </div>
       </form>
-      <div class="row mb-3">
-        <div class="col-4 pinkborder cityname">Loading</div>
-        <div class="col-4">
+
+      <div class="row mb-3 g-2">
+        <div class="col-3">
+          <div class="pinkborder fullheight p-2 cityname"></div>
+        </div>
+        <div class="col-3">
+          <div class="pinkborder fullheight p-2 weatherIcon"></div>
+        </div>
+        <div class="col-3">
           <div class="pinkborder fullheight p-2 citytemp">
-            <span class="temperature"> . . . </span>
+            <span class="temperatureC"> </span>
+            <br />
+            <span class="temperatureF"> </span>
             <br />
           </div>
         </div>
-        <div class="col-4 pinkborder metrics">
-          Precipitation: 0% <br />
-          Humidity: 16% <br />
-          Wind: 8km/h <br />
+        <div class="col-3">
+          <div class="pinkborder fullheight p-2 metrics"></div>
         </div>
       </div>
-      <div class="row mb-3 pinkborder">
+      <div class="row mb-3 g-2 pinkborder">
         <div class="col-8 date">03/11/2021</div>
         <div class="col-4 time">Friday 23:00</div>
       </div>
-      <div class="row pinkborder">
+      <div class="row mb-2 g-2 pinkborder forecast">
         <div class="col-8">Saturday</div>
         <div class="col-4">
-          <span class="high">23°</span> <span class="low">6°</span> 🌞
+          <span class="high">23°</span> <span class="low">6°</span> ☀️
         </div>
 
         <div class="col-8">Sunday</div>
         <div class="col-4">
-          <span class="high">24°</span> <span class="low">6°</span> 🌞
+          <span class="high">24°</span> <span class="low">6°</span> ☀️
         </div>
 
         <div class="col-8">Monday</div>
         <div class="col-4">
-          <span class="high">24°</span> <span class="low">8°</span> 🌞
+          <span class="high">24°</span> <span class="low">8°</span> 🌦
         </div>
 
         <div class="col-8">Tuesday</div>
         <div class="col-4">
-          <span class="high">24°</span> <span class="low">8°</span> 🌞
+          <span class="high">24°</span> <span class="low">8°</span> ☁️
         </div>
 
         <div class="col-8">Wednesday</div>
         <div class="col-4">
-          <span class="high">25°</span> <span class="low">9°</span> 🌞
+          <span class="high">25°</span> <span class="low">9°</span> ☀️
         </div>
 
         <div class="col-8">Thursday</div>
         <div class="col-4">
-          <span class="high">26°</span> <span class="low">8°</span> 🌞
+          <span class="high">26°</span> <span class="low">8°</span> 🌦
         </div>
       </div>
     </div>
-    <div class="footerLink">
-      <a href="https://github.com/louiseahart/weather-app" target="_blank"
-        >Open-source code, </a
-      >by Louise Hart
+    <div class="container">
+      <div class="footerLink">
+        <a href="https://github.com/louiseahart/weather-app" target="_blank"
+          >Open-source code</a
+        >, by Louise Hart
+      </div>
     </div>
     <script src="src/index.js"></script>
   </body>
