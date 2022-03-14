@@ -69,6 +69,12 @@ body {
   font-size: 50px;
   text-align: left;
   padding: 20px 20px 20px 20px;
+  text-align: center;
+}
+
+.weatherIcon .description {
+  font-size: 21px;
+  text-transform: capitalize;
 }
 
 .citytemp {

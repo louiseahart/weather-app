@@ -182,7 +182,8 @@ function displayTemperature(response) {
   let weatherEmoji = displayEmoji(response.data.weather[0].main);
 
   let emoji = document.querySelector(".weatherIcon");
-  emoji.innerHTML = weatherEmoji; //+ " " + response.data.weather[0].description;
+  emoji.innerHTML = `${weatherEmoji} 
+    <div class="description"> ${response.data.weather[0].description}</div>`;
 
   let tempResultC = document.querySelector(".temperatureC");
   tempResultC.innerHTML = Math.round(response.data.main.temp) + "°C ";
