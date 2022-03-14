@@ -195,16 +195,16 @@ function displayTemperature(response) {
 
   let metricResult = document.querySelector(".metrics");
   metricResult.innerHTML =
-    "Min: " +
-    Math.round(response.data.main.temp_min) +
-    "°C " +
-    " <br/> Max: " +
+    " Current Max: " +
     Math.round(response.data.main.temp_max) +
     "°C " +
-    " <br/> Humid: " +
+    " <br/> Current Min: " +
+    Math.round(response.data.main.temp_min) +
+    "°C " +
+    " <br/> Humidity: " +
     Math.round(response.data.main.humidity) +
     "% " +
-    " <br/> Wind: " +
+    " <br/> Wind Speed: " +
     Math.round(response.data.wind.speed) +
     "km/h ";
 
