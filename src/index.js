@@ -55,6 +55,38 @@ function formatTime(givenDate) {
   return day + " " + hours + ":" + minutes;
 }
 
+function formatWeekday(givenDate) {
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "Septemble",
+    "October",
+    "November",
+    "December",
+  ];
+
+  let day = padWithZero(days[givenDate.getDay()]);
+  let month = months[givenDate.getMonth()];
+  let date = givenDate.getDate();
+
+  return day + " " + month + " " + date;
+}
+
 function padWithZero(number) {
   return String(number).padStart(2, "0");
 }
@@ -69,14 +101,45 @@ let timeDiv = document.querySelector(".time");
 timeDiv.innerHTML = formatTime(new Date());
 
 //
-function displayTemperature(response) {
-  let cityResult = document.querySelector(".cityname");
-  let city = response.data.name;
-  cityResult.innerHTML = city;
+function displayForecast(forecastResponse) {
+  console.log("got forecast response:", forecastResponse);
+  let forecastElement = document.querySelector(".forecast");
 
+  let forecastHTML = "";
+  let days = [
+    "Saturday",
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+  ];
+
+  forecastResponse.data.daily.forEach(function (day) {
+    console.log(day);
+    let date = formatWeekday(new Date(day.dt * 1000));
+    let celciusMax = Math.round(day.temp.max);
+    let celciusMin = Math.round(day.temp.min);
+    let weatherEmoji = displayEmoji(day.weather[0].main);
+    forecastHTML =
+      forecastHTML +
+      `<div class="col-9">${date}</div>
+        <div class="col-3 weekdayTemp">
+          <span class="high">${celciusMax}°C</span> 
+          <span class="low">${celciusMin}°C</span> 
+          ${weatherEmoji}
+        </div>`;
+  });
+
+  forecastElement.innerHTML = forecastHTML;
+}
+//
+
+function displayEmoji(weatherConditions) {
   let newEmoji = "";
 
-  switch (response.data.weather[0].main) {
+  switch (weatherConditions) {
     case "Clear":
       newEmoji = "☀️";
       break;
@@ -106,11 +169,20 @@ function displayTemperature(response) {
       break;
 
     default:
-      newEmoji = "";
+      newEmoji = "Did not find emoji for: " + weatherConditions;
   }
+  return newEmoji;
+}
+
+function displayTemperature(response) {
+  let cityResult = document.querySelector(".cityname");
+  let city = response.data.name;
+  cityResult.innerHTML = city;
+
+  let weatherEmoji = displayEmoji(response.data.weather[0].main);
 
   let emoji = document.querySelector(".weatherIcon");
-  emoji.innerHTML = newEmoji; //+ " " + response.data.weather[0].description;
+  emoji.innerHTML = weatherEmoji; //+ " " + response.data.weather[0].description;
 
   let tempResultC = document.querySelector(".temperatureC");
   tempResultC.innerHTML = Math.round(response.data.main.temp) + "°C ";
@@ -135,6 +207,24 @@ function displayTemperature(response) {
     " <br/> Wind: " +
     Math.round(response.data.wind.speed) +
     "km/h ";
+
+  console.log(response.data.coord);
+
+  let lat = response.data.coord.lat;
+  let lon = response.data.coord.lon;
+
+  let apiKey = "f8c3365e92d7af34ccb10db1054b98ab";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude={part}&appid=${apiKey}&units=metric`;
+
+  console.log("making API query: ", apiUrl);
+
+  // "https://api.openweathermap.org/data/2.5/weather?lat=" +
+  // lat +
+  // "&lon=" +
+  // lon +
+  // "&units=metric&appid=" +
+  // apiKey;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 //
